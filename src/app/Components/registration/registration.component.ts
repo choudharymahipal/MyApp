@@ -6,15 +6,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrl: './registration.component.scss'
+  styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent {
-isLoggedIn = this.authService.isAuthenticated();
-formGroup!: FormGroup;
-  constructor(private authService: AuthService,private router: Router,private fb:FormBuilder) {
+  isLoggedIn = this.authService.isAuthenticated();
+  formGroup!: FormGroup;
+  currentUserEmail: string = '';
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
     effect(() => {
       console.log('User authentication changed:', this.isLoggedIn());
-      if(!this.isLoggedIn()){
+      if (!this.isLoggedIn()) {
         this.router.navigate(['/']);
       }
     });
@@ -22,7 +28,10 @@ formGroup!: FormGroup;
     this.formGroup = this.fb.group({
       death_date: [null, [Validators.required]],
       deceased_name: [null, [Validators.required, Validators.maxLength(255)]],
-      father_or_spouse_name: [null, [Validators.required, Validators.maxLength(255)]],
+      father_or_spouse_name: [
+        null,
+        [Validators.required, Validators.maxLength(255)],
+      ],
       gender: [null, [Validators.required]],
       age: [null, [Validators.required, Validators.min(0)]],
       place_of_death: [null, [Validators.required, Validators.maxLength(255)]],
@@ -44,12 +53,20 @@ formGroup!: FormGroup;
       cremator_name: [null, [Validators.maxLength(255)]],
       cremator_relation: [null, [Validators.maxLength(255)]],
       informant_name: [null, [Validators.maxLength(255)]],
-      informant_relation: [null, [Validators.maxLength(255)]]
+      informant_relation: [null, [Validators.maxLength(255)]],
+      created_by: [null],
     });
   }
 
+  ngOnInit(): void {
+    let userData = this.authService.getCurrentUser();
+    if(userData){
+      this.currentUserEmail = userData.email;
+    }
+  }
 
-  onSubmit(){
+  onSubmit() {
+    this.formGroup.controls['created_by'].setValue(this.currentUserEmail);
     console.log(this.formGroup.value);
   }
 }

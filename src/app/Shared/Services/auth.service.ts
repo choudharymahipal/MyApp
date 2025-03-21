@@ -57,4 +57,16 @@ export class AuthService {
   private checkInitialLoginState(): boolean {
     return !!localStorage.getItem('authToken');
   }
+
+  // Get all registrations
+  getAllRegistrations(): Observable<any> {
+    let token = localStorage.getItem('authToken');
+    return this.http.get(this.apiUrl + '/auth/death-records', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 }

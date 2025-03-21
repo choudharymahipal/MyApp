@@ -1,14 +1,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="./assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
         <span class="brand-text font-weight-light">My App</span>
     </a>
 
-    <!-- Sidebar -->
     <div class="sidebar">
-        <!-- SidebarSearch Form -->
         <div class="form-inline mt-2">
             <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
@@ -20,30 +17,35 @@
             </div>
         </div>
 
-        <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                <li class="nav-header">मुख्य पृष्ठ</li>
                 <li class="nav-item">
                     <a href="/" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                            डैशबोर्ड
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">पंजीकरण</li>
+                <li class="nav-item">
+                    <a routerLink="/view/registration" class="nav-link">
+                        <i class="nav-icon fas fa-eye"></i>
+                        <p>
+                            सभी पंजीकरण देखें
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a routerLink="/death/registration" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Death Registration
+                            नया पंजीकरण बनाएं
                         </p>
                     </a>
                 </li>
             </ul>
         </nav>
-        <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
 </aside>
