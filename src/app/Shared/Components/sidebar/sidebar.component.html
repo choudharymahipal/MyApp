@@ -6,29 +6,26 @@
     </a>
 
     <div class="sidebar">
-        <div class="form-inline mt-2">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header">मुख्य पृष्ठ</li>
+                <li class="nav-header">&nbsp; मुख्य पृष्ठ :</li>
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a routerLink="/dashboard" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             डैशबोर्ड
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">पंजीकरण</li>
+                <li class="nav-item">
+                    <a routerLink="/settings/profile" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            प्रोफ़ाइल और सेटिंग्स
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">पंजीकरण :</li>
                 <li class="nav-item">
                     <a routerLink="/view/registration" class="nav-link">
                         <i class="nav-icon fas fa-eye"></i>

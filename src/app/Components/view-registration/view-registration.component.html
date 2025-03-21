@@ -1,41 +1,199 @@
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">सभी पंजीकरणों की सूची</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">मुख्य पृष्ठ</a></li>
-              <li class="breadcrumb-item active">पंजीकरण</li>
-              <li class="breadcrumb-item active">सभी पंजीकरण देखें</li>
-            </ol>
-          </div>
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">सभी पंजीकरणों की सूची</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">मुख्य पृष्ठ</a></li>
+            <li class="breadcrumb-item active">पंजीकरण</li>
+            <li class="breadcrumb-item active">सभी पंजीकरण देखें</li>
+          </ol>
         </div>
       </div>
     </div>
+  </div>
 
-    <section class="content">
-      <div class="container-fluid">
-        <div class="card card-default">
-          <div class="card-header">
-            <h3 class="card-title">पेज हेडर</h3>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title">यहाँ हम सभी पंजीकृत डेटा प्रदर्शित कर रहे हैं
+            |</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>मृतक का नाम</th>
+                    <th>मृत्यु की दिनांक</th>
+                    <th>मृतक का लिंग</th>
+                    <th>द्वारा पंजीकृत</th>
+                    <th>कार्रवाई</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of data">
+                    <td>{{item.id}}</td>
+                    <td>{{item.deceased_name}}</td>
+                    <td>{{item.death_date | date:'dd-MMM-yyyy hh:mm a'}}</td>
+                    <td>{{item.gender}}</td>
+                    <td>{{item.created_by}}</td>
+                    <td>
+                      <button (click)="openModal(item)" class="btn btn-primary">विवरण</button>
+                      <button class="btn btn-danger ml-2">हटाएं</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <p>view registration table goes here</p>
-            <p>
-                {{data| json}}
-            </p>
-          </div>
-          <div class="card-footer">
-            This is standard card footer
+        </div>
+        <div class="card-footer">
+          किसी भी समस्या के लिए हमसे संपर्क करें <a
+            routerLink="/">http://localhost:4200/</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+<div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">मृतक का विवरण</h4>
+        <button type="button" (click)="closeModal()" data-bs-dismiss="modal" class="close" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>मृत्यु की दिनांक</td>
+                  <td style="width: 300px;">{{data[0].death_date | date:'dd-MMM-yyyy hh:mm a'}}</td>
+                </tr>
+                <tr>
+                  <td>मृतक का नाम</td>
+                  <td>{{data[0].deceased_name}}</td>
+                </tr>
+                <tr>
+                  <td>मृतक के पिता या पति का नाम</td>
+                  <td>{{data[0].father_or_spouse_name}}</td>
+                </tr>
+                <tr>
+                  <td>मृतक का लिंग</td>
+                  <td>{{data[0].gender}}</td>
+                </tr>
+                <tr>
+                  <td>मृतक की आयु</td>
+                  <td>{{data[0].age}}</td>
+                </tr>
+                <tr>
+                  <td>मृत्यु का स्थान</td>
+                  <td>{{data[0].place_of_death}}</td>
+                </tr>
+                <tr>
+                  <td>मृत्यु का कारण</td>
+                  <td>{{data[0].cause_of_death}}</td>
+                </tr>
+                <tr>
+                  <td>क्या मृत्यु के पूर्व कोई चिकित्सकीय सुविधा प्राप्त हुई
+                    थी?</td>
+                  <td>{{data[0].medical_facility_received}}</td>
+                </tr>
+                <tr>
+                  <td>क्या चिकित्सा के दौरान मृत्यु हुई थी?</td>
+                  <td>{{data[0].death_during_treatment}}</td>
+                </tr>
+                <tr>
+                  <td>यदि हाँ तो क्या चिकित्सकीय द्वारा लिखित मृत्यु प्रमाणित
+                    किया गया था?</td>
+                  <td>{{data[0].death_certified}}</td>
+                </tr>
+                <tr>
+                  <td>बीमारी का नाम</td>
+                  <td>{{data[0].disease_name}}</td>
+                </tr>
+                <tr>
+                  <td>मृतक का वर्तमान निवास</td>
+                  <td>{{data[0].current_residence}}</td>
+                </tr>
+                <tr>
+                  <td>मृतक का पैतृक निवास</td>
+                  <td>{{data[0].permanent_residence}}</td>
+                </tr>
+                <tr>
+                  <td>जाति / उपजाति</td>
+                  <td>{{data[0].caste}}</td>
+                </tr>
+                <tr>
+                  <td>राष्ट्रीयता / धर्म </td>
+                  <td>{{data[0].nationality}}</td>
+                </tr>
+                <tr>
+                  <td>मृतक का व्यवसाय </td>
+                  <td>{{data[0].occupation}}</td>
+                </tr>
+                <tr>
+                  <td>महिला मृत्यु की स्थिति में (क्या मृत्यु गर्भ के दौरान /
+                    प्रसूति के दौरान / गर्भावस्था की समाप्ति के 6 सप्ताह के भीतर
+                    हुई थीं) </td>
+                  <td>{{data[0].female_death_condition}}</td>
+                </tr>
+                <tr>
+                  <td>क्या मृतक किसी प्रकार के नशीले पदार्थ का सेवन करता था
+                    यदि
+                    हाँ तो कौन सा? </td>
+                  <td>{{data[0].substance_type}}</td>
+                </tr>
+                <tr>
+                  <td>कब से नशीले पदार्थ का सेवन करता था ? </td>
+                  <td>{{data[0].substance_usage_duration}}</td>
+                </tr>
+                <tr>
+                  <td>शवदाह की तिथि व समय </td>
+                  <td>{{data[0].cremation_date_time | date:'dd-MMM-yyyy hh:mm a'}}</td>
+                </tr>
+                <tr>
+                  <td>शवदाह करने वाले का नाम </td>
+                  <td>{{data[0].cremator_name}}</td>
+                </tr>
+                <tr>
+                  <td>शवदाह करने वाले का मृतक से सम्बंध ? </td>
+                  <td>{{data[0].cremator_relation}}</td>
+                </tr>
+                <tr>
+                  <td>सूचना देने वाले का नाम </td>
+                  <td>{{data[0].informant_name}}</td>
+                </tr>
+                <tr>
+                  <td>सूचना देने वाले का मृतक से सम्बंध ? </td>
+                  <td>{{data[0].informant_relation}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    </section>
-  
+      <div class="modal-footer justify-content-end">
+        <button type="button" class="btn btn-danger" (click)="closeModal()" data-bs-dismiss="modal">पॉपअप बंद करें?</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
   </div>
-  
+  <!-- /.modal-dialog -->
+</div>
