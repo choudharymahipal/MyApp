@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,effect } from '@angular/core';
+import { AuthService } from './Shared/Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'admin-lte-with-angular';
+  isLoggedIn = this.authService.isAuthenticated();
+  constructor(private authService: AuthService){
+    effect(() => {
+      console.log('User authentication changed:', this.isLoggedIn());
+    });
+  }
 }

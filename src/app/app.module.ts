@@ -15,6 +15,14 @@ import { ProfileComponent } from './Components/Settings/profile/profile.componen
 import { ChartJsComponent } from './Components/Charts/chart-js/chart-js.component';
 import { FlotComponent } from './Components/Charts/flot/flot.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './Shared/Services/auth.service';
+import { CommonService } from './Shared/Services/common.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Required for Toastr
+import { ToastrModule } from 'ngx-toastr';
+import { ToasterService } from './Shared/Services/toaster.service';
 
 @NgModule({
   declarations: [
@@ -30,13 +38,25 @@ import { RegistrationComponent } from './Components/registration/registration.co
     ProfileComponent,
     ChartJsComponent,
     FlotComponent,
-    RegistrationComponent
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000, // Auto close after 3 seconds
+      positionClass: 'toast-top-right', // Position
+      preventDuplicates: true, // Prevent duplicate messages
+      closeButton: true,
+      progressBar: true
+    }),
+    AppRoutingModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService, CommonService,ToasterService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

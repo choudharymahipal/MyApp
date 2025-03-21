@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.toast-success {
+    background-color: #28a745 !important; /* AdminLTE success color */
+    color: white;
+  }
+  
+  .toast-error {
+    background-color: #dc3545 !important; /* AdminLTE error color */
+    color: white;
+  }
+  
+  .toast-info {
+    background-color: #17a2b8 !important; /* AdminLTE info color */
+    color: white;
+  }
+  
+  .toast-warning {
+    background-color: #ffc107 !important; /* AdminLTE warning color */
+    color: black;
+  }

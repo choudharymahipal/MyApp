@@ -11,7 +11,7 @@ import { FlotComponent } from './Components/Charts/flot/flot.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
 
 const routes: Routes = [
-  { path: "login", component: LoginComponent },
+  { path: "", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "lockscreen", component: LockScreenComponent },
   { path: "error", component: ErrorPageComponent },
@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: "charts/chartjs", component: ChartJsComponent },
   { path: "charts/flot", component: FlotComponent },
   { path: "death/registration", component: RegistrationComponent },
-  { path: "", component: DashboardComponent },
+  { path: "dashboard", component: DashboardComponent },
   { path: "", redirectTo: "", pathMatch: "full" },
   { path: "**", redirectTo: "error", pathMatch: "full" }
 ];
