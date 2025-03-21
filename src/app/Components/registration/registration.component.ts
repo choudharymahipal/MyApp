@@ -68,5 +68,13 @@ export class RegistrationComponent {
   onSubmit() {
     this.formGroup.controls['created_by'].setValue(this.currentUserEmail);
     console.log(this.formGroup.value);
+    if(this.formGroup.valid){
+      this.authService.saveRegistration(this.formGroup.value).subscribe((data) => {
+        console.log(data);
+        alert('Data saved successfully');
+      });
+    }else{
+      alert('Please fill all the required fields');
+    }
   }
 }

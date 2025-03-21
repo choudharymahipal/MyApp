@@ -31,14 +31,14 @@
                   <label>मृत्यु की दिनांक <span
                       class="text-danger">*</span></label>
                   <input type="text" formControlName="death_date"
-                    class="form-control select2" />
+                    class="form-control select2" placeholder="yyyy-MM-dd hh:mm" required/>
                 </div>
 
                 <div class="form-group">
                   <label>मृतक के पिता या पति का नाम <span
                       class="text-danger">*</span></label>
                   <input type="text" formControlName="father_or_spouse_name"
-                    class="form-control select2" />
+                    class="form-control select2" required/>
                 </div>
 
               </div>
@@ -47,13 +47,13 @@
                 <div class="form-group">
                   <label>मृतक का नाम <span class="text-danger">*</span></label>
                   <input type="text" formControlName="deceased_name"
-                    class="form-control select2" />
+                    class="form-control select2" required />
                 </div>
 
                 <div class="form-group">
                   <label>मृतक का लिंग <span class="text-danger">*</span></label>
                   <select class="custom-select rounded-0" id="gender"
-                    placeholder="Select Gender" formControlName="gender">
+                    placeholder="Select Gender" formControlName="gender" required>
                     <option value="Male">पुरुष</option>
                     <option value="Female">महिला</option>
                     <option value="Transgender">ट्रांसजेंडर</option>
@@ -64,8 +64,8 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>मृतक की आयु <span class="text-danger">*</span></label>
-                  <input type="text" formControlName="age"
-                    class="form-control select2" />
+                  <input type="number" formControlName="age"
+                    class="form-control select2" required />
                 </div>
                 <div class="form-group">
                   <label>मृत्यु का स्थान (यदि अस्पताल / संस्था / घर या अन्य किसी
@@ -73,7 +73,7 @@
                     लिखें) <span class="text-danger">*</span></label>
                   <div class="select2-purple">
                     <input type="text" formControlName="place_of_death"
-                      class="form-control select2" />
+                      class="form-control select2" required />
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@
                   <label>मृत्यु का कारण <span
                       class="text-danger">*</span></label>
                   <input type="text" formControlName="cause_of_death"
-                    class="form-control select2" />
+                    class="form-control select2" required />
                 </div>
                 <div class="form-group">
                   <label>क्या मृत्यु के पूर्व कोई चिकित्सकीय सुविधा प्राप्त हुई
@@ -93,7 +93,7 @@
                   <div class="select2-purple">
                     <input type="text"
                       formControlName="medical_facility_received"
-                      class="form-control select2" />
+                      class="form-control select2" required />
                   </div>
                 </div>
               </div>
@@ -103,14 +103,14 @@
                   <label>क्या चिकित्सा के दौरान मृत्यु हुई थी? हां या नहीं?
                     <span class="text-danger">*</span></label>
                   <input type="text" formControlName="death_during_treatment"
-                    class="form-control select2" />
+                    class="form-control select2" required />
                 </div>
                 <div class="form-group">
                   <label>यदि हाँ तो क्या चिकित्सकीय द्वारा लिखित मृत्यु प्रमाणित
                     किया गया था? <span class="text-danger">*</span></label>
                   <div class="select2-purple">
                     <input type="text" formControlName="death_certified"
-                      class="form-control select2">
+                      class="form-control select2" required>
                   </div>
                 </div>
               </div>
@@ -120,14 +120,14 @@
                   <label>बीमारी का नाम <span class="text-danger">*</span>
                   </label>
                   <input type="text" formControlName="disease_name"
-                    class="form-control select2" />
+                    class="form-control select2" required />
                 </div>
                 <div class="form-group">
                   <label>मृतक का वर्तमान निवास <span
                       class="text-danger">*</span></label>
                   <div class="select2-purple">
                     <input type="text" formControlName="current_residence"
-                      class="form-control select2">
+                      class="form-control select2" required>
                   </div>
                 </div>
               </div>
@@ -137,14 +137,14 @@
                   <label>मृतक का पैतृक निवास <span class="text-danger">*</span>
                   </label>
                   <input type="text" formControlName="permanent_residence"
-                    class="form-control select2" />
+                    class="form-control select2" required />
                 </div>
                 <div class="form-group">
                   <label>जाति / उपजाति <span
                       class="text-danger">*</span></label>
                   <div class="select2-purple">
                     <input type="text" formControlName="caste"
-                      class="form-control select2" />
+                      class="form-control select2" required />
                   </div>
                 </div>
               </div>
@@ -154,14 +154,14 @@
                   <label>राष्ट्रीयता / धर्म <span class="text-danger">*</span>
                   </label>
                   <input type="text" formControlName="nationality"
-                    class="form-control select2" />
+                    class="form-control select2" required />
                 </div>
                 <div class="form-group">
                   <label>मृतक का व्यवसाय <span class="text-danger">*</span>
                   </label>
                   <div class="select2-purple">
                     <input type="text" formControlName="occupation"
-                      class="form-control select2" />
+                      class="form-control select2" required />
                   </div>
                 </div>
               </div>
@@ -172,7 +172,7 @@
                     हुई थीं) <span class="text-danger">*</span>
                   </label>
                   <input type="text" formControlName="female_death_condition"
-                    class="form-control select2" />
+                    class="form-control select2" required />
                 </div>
                 <div class="form-group">
                   <label>क्या मृतक किसी प्रकार के नशीले पदार्थ का सेवन करता था
@@ -181,7 +181,7 @@
                   <br><br>
                   <div class="select2-purple">
                     <input type="text" formControlName="substance_type"
-                      class="form-control select2" />
+                      class="form-control select2" required />
                   </div>
                 </div>
               </div>
@@ -192,7 +192,7 @@
                       class="text-danger">*</span></label>
                   <br><br>
                   <input type="text" formControlName="substance_usage_duration"
-                    class="form-control select2" />
+                    class="form-control select2" required />
                 </div>
                 <div class="form-group">
                   <label>शवदाह की तिथि व समय <span
@@ -201,7 +201,7 @@
                   <div class="select2-purple">
 
                     <input type="text" formControlName="cremation_date_time"
-                      class="form-control select2" />
+                      class="form-control select2" placeholder="yyyy-MM-dd hh:mm" required />
                   </div>
                 </div>
               </div>
@@ -212,14 +212,14 @@
                       class="text-danger">*</span></label>
                   <div class="select2-purple">
                     <input type="text" formControlName="cremator_name"
-                      class="form-control select2" />
+                      class="form-control select2" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label>शवदाह करने वाले का मृतक से सम्बंध ? <span
                       class="text-danger">*</span></label>
                   <input type="text" formControlName="cremator_relation"
-                    class="form-control select2" />
+                    class="form-control select2" required />
                 </div>
               </div>
 
@@ -229,14 +229,14 @@
                       class="text-danger">*</span></label>
                   <div class="select2-purple">
                     <input type="text" formControlName="informant_name"
-                      class="form-control select2" />
+                      class="form-control select2" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label>सूचना देने वाले का मृतक से सम्बंध ? <span
                       class="text-danger">*</span></label>
                   <input type="text" formControlName="informant_relation"
-                    class="form-control select2">
+                    class="form-control select2" required />
                 </div>
               </div>
 
@@ -246,7 +246,7 @@
               <br><br>
               <div class="form-group text-center">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox">
+                  <input class="form-check-input" type="checkbox" required>
                   <label class="form-check-label">मैं शपथ के साथ वचन देता हूँ कि मैने जो
                     भी सूचना उपलब्ध करायी है, वह पूर्णतया सत्य है। <span
                       class="text-danger">*</span></label>

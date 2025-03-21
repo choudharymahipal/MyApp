@@ -69,4 +69,15 @@ export class AuthService {
       },
     });
   }
+
+  saveRegistration(data:any): Observable<any> {
+    let token = localStorage.getItem('authToken');
+    return this.http.post(this.apiUrl + '/auth/save',data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 }
