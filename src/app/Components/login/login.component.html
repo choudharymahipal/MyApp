@@ -1,35 +1,35 @@
 <div class="login-page" style="min-height: 496.797px;">
     <div class="login-box">
         <div class="login-logo">
-            <a routerLink="/"><b>My </b>App</a>
+            <h6>नगर पंचायत बडहलगंज द्वारा संचालित अंत्येष्टि स्थल,<br> मुक्तिपथ – गोरखपुर, उत्तर प्रदेश (भारत)</h6>
         </div>
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg" *ngIf="!isInvalidCredentials">Sign in to start your session</p>
-                <p class="login-box-msg text-danger" *ngIf="isInvalidCredentials">Invalid credentials</p>
+                <p class="login-box-msg" *ngIf="!isInvalidCredentials">लॉग इन करें</p>
+                <p class="login-box-msg text-danger" *ngIf="isInvalidCredentials">ईमेल और पासवर्ड अमान्य है|</p>
                 <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
                     <div class="input-group mb-3">
                         <input type="email" formControlName="email" class="form-control"
-                            placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                            placeholder="ईमेल" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
                         <div class="input-group-append">
                             <div class="input-group-text" [ngClass]="{ 'text-danger': submitted && f['email'].errors }">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                         <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-                            <div *ngIf="f['email'].errors['required']">Email is required</div>
+                            <div *ngIf="f['email'].errors['required']">ईमेल की जरूरत है</div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" formControlName="password" class="form-control"
-                            placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                            placeholder="पासवर्ड" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
                         <div class="input-group-append">
                             <div class="input-group-text" [ngClass]="{ 'text-danger': submitted && f['password'].errors }">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                         <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-                            <div *ngIf="f['password'].errors['required']">Password is required</div>
+                            <div *ngIf="f['password'].errors['required']">पासवर्ड आवश्यक है</div>
                         </div>
                     </div>
                     <br>
@@ -37,7 +37,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <button [disabled]="loading" type="submit" class="btn btn-primary">
-                                    Log In
+                                    लॉग इन करें
                                 </button> &nbsp;&nbsp;
                                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                             </div>
@@ -47,7 +47,7 @@
 
                 <br>
                 <p class="text-left">
-                    <a routerLink="/register" class="text-center">Create new account</a>
+                    <a routerLink="/register" class="text-center">नया खाता बनाएँ?</a>
                 </p>
             </div>
     

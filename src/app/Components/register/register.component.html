@@ -1,65 +1,77 @@
 <div class="register-page" style="min-height: 570.797px;">
     <div class="register-box">
         <div class="register-logo">
-            <a href="../../index2.html"><b>My </b>App</a>
+            <h6>नगर पंचायत बडहलगंज द्वारा संचालित अंत्येष्टि स्थल,<br> मुक्तिपथ – गोरखपुर, उत्तर प्रदेश (भारत)</h6>
         </div>
         <div class="card">
             <div class="card-body register-card-body">
-                <p class="login-box-msg">Create new account</p>
-                <form action="../../index.html" method="post">
+                <p class="login-box-msg" *ngIf="!isSuccess">नया खाता बनाएँ</p>
+                <p class="login-box-msg text-success" *ngIf="isSuccess">आपका खाता सफलतापूर्वक बनाया गया। कृपया लॉगिन करें</p>
+                <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control"
-                            placeholder="Full name">
+                        <input type="text" formControlName="name"
+                            class="form-control"
+                            placeholder="अपना पूरा नाम लिखें"
+                            [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
                         <div class="input-group-append">
-                            <div class="input-group-text">
+                            <div class="input-group-text"
+                                [ngClass]="{ 'text-danger': submitted && f['name'].errors }">
                                 <span class="fas fa-user"></span>
                             </div>
                         </div>
+                        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                            <div *ngIf="f['name'].errors['required']">कृपया अपना नाम दर्ज करें</div>
+                        </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control"
-                            placeholder="Email">
+                        <input type="email" formControlName="email"
+                            class="form-control"
+                            placeholder="ईमेल"
+                            [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
                         <div class="input-group-append">
-                            <div class="input-group-text">
+                            <div class="input-group-text"
+                                [ngClass]="{ 'text-danger': submitted && f['email'].errors }">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control"
-                            placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                            <div *ngIf="f['email'].errors['required']">ईमेल की जरूरत है</div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control"
-                            placeholder="Retype password">
+                        <input type="password" formControlName="password"
+                            class="form-control"
+                            placeholder="पासवर्ड"
+                            [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
                         <div class="input-group-append">
-                            <div class="input-group-text">
+                            <div class="input-group-text"
+                                [ngClass]="{ 'text-danger': submitted && f['password'].errors }">
                                 <span class="fas fa-lock"></span>
                             </div>
+                        </div>
+                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                            <div *ngIf="f['password'].errors['required']">पासवर्ड आवश्यक है</div>
                         </div>
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-8">
-                        </div>
-
-                        <div class="col-4">
-                            <a routerLink="/"
-                                class="btn btn-primary btn-block">Create</a>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <button [disabled]="loading" type="submit"
+                                    class="btn btn-success">खाता
+                                    बनाएं</button> &nbsp;&nbsp;
+                                <img *ngIf="loading"
+                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            </div>
                         </div>
 
                     </div>
                 </form>
                 <br>
-                <div class="text-right">
-                    <a routerLink="/login" >I already have an account</a>
+                <div class="text-left">
+                    <a routerLink="/">मेरा पहले से ही खाता है?</a>
                 </div>
-                
+
             </div>
 
         </div>

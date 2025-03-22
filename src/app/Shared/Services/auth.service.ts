@@ -32,6 +32,13 @@ export class AuthService {
     });
   }
 
+  // Create new account for user
+  createNewAccount(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + '/auth/register', data, {
+      headers: this.headers,
+    });
+  }
+
   // Save token to localStorage
   saveToken(response: IloginResponse) {
     localStorage.setItem('authToken', response.token);
@@ -70,6 +77,7 @@ export class AuthService {
     });
   }
 
+  // Save registration
   saveRegistration(data:any): Observable<any> {
     let token = localStorage.getItem('authToken');
     return this.http.post(this.apiUrl + '/auth/save',data, {
