@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { ToastrModule } from 'ngx-toastr';
 import { ToasterService } from './Shared/Services/toaster.service';
 import { ViewRegistrationComponent } from './Components/view-registration/view-registration.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ViewRegistrationComponent } from './Components/view-registration/view-r
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000, // Auto close after 3 seconds

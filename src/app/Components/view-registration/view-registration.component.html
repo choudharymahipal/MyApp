@@ -29,7 +29,7 @@
 
           <div class="row">
             <div class="col-12">
-              <table class="table">
+              <table class="table" id="viewRegistration">
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
@@ -48,8 +48,9 @@
                     <td>{{item.gender}}</td>
                     <td>{{item.created_by}}</td>
                     <td>
-                      <button (click)="openModal(item)" class="btn btn-primary">विवरण</button>
-                      <button class="btn btn-danger ml-2">हटाएं</button>
+                      <button (click)="openModal(item)" class="btn btn-primary" title="विवरण"><i class="bi bi-eye"></i></button>
+                      <button (click)="generatePDF(item)" class="btn btn-success ml-2" title="प्रमाणपत्र डाउनलोड करें"><i class="bi bi-download"></i> </button>
+                      <button (click)="deleteRegistration(item)" class="btn btn-danger ml-2" title="हटाएं?"><i class="bi bi-trash"></i></button>
                     </td>
                   </tr>
                 </tbody>
@@ -77,7 +78,7 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body modalScroll">
         <div class="row">
           <div class="col-12">
             <table class="table">
