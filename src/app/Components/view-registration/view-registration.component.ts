@@ -11,7 +11,7 @@ import autoTable from 'jspdf-autotable';
 })
 export class ViewRegistrationComponent {
   data: any;
-  selectedDataIndex: number=-1;
+  selectedDataIndex: number = -1;
 
   constructor(private authService: AuthService) {}
 
@@ -50,7 +50,7 @@ export class ViewRegistrationComponent {
     const doc = new jsPDF();
 
     doc.text('Certificate', 20, 20);
-    
+
     // Colorful Table
     autoTable(doc, {
       head: [['Questions', 'Answers']],
@@ -62,17 +62,29 @@ export class ViewRegistrationComponent {
         ['मृतक की आयु', item.age],
         ['मृत्यु का स्थान', item.place_of_death],
         ['मृत्यु का कारण', item.cause_of_death],
-        ['क्या मृत्यु के पूर्व कोई चिकित्सकीय सुविधा प्राप्त हुई थी?', item.medical_facility_received],
+        [
+          'क्या मृत्यु के पूर्व कोई चिकित्सकीय सुविधा प्राप्त हुई थी?',
+          item.medical_facility_received,
+        ],
         ['क्या चिकित्सा के दौरान मृत्यु हुई थी?', item.death_during_treatment],
-        ['यदि हाँ तो क्या चिकित्सकीय द्वारा लिखित मृत्यु प्रमाणित किया गया था?', item.death_certified],
+        [
+          'यदि हाँ तो क्या चिकित्सकीय द्वारा लिखित मृत्यु प्रमाणित किया गया था?',
+          item.death_certified,
+        ],
         ['बीमारी का नाम', item.disease_name],
         ['मृतक का वर्तमान निवास', item.current_residence],
         ['मृतक का पैतृक निवास', item.permanent_residence],
         ['जाति / उपजाति', item.caste],
         ['राष्ट्रीयता / धर्म', item.nationality],
         ['मृतक का व्यवसाय', item.occupation],
-        ['महिला मृत्यु की स्थिति में (क्या मृत्यु गर्भ के दौरान / प्रसूति के दौरान / गर्भावस्था की समाप्ति के 6 सप्ताह के भीतर हुई थीं)', item.female_death_condition],
-        ['क्या मृतक किसी प्रकार के नशीले पदार्थ का सेवन करता था यदि हाँ तो कौन सा?', item.substance_type],
+        [
+          'महिला मृत्यु की स्थिति में (क्या मृत्यु गर्भ के दौरान / प्रसूति के दौरान / गर्भावस्था की समाप्ति के 6 सप्ताह के भीतर हुई थीं)',
+          item.female_death_condition,
+        ],
+        [
+          'क्या मृतक किसी प्रकार के नशीले पदार्थ का सेवन करता था यदि हाँ तो कौन सा?',
+          item.substance_type,
+        ],
         ['कब से नशीले पदार्थ का सेवन करता था ?', item.substance_usage_duration],
         ['शवदाह की तिथि व समय', item.cremation_date_time],
         ['शवदाह करने वाले का नाम', item.cremator_name],
@@ -84,11 +96,19 @@ export class ViewRegistrationComponent {
     });
 
     // Save the PDF
-    doc.save('certificate_'+item.id+'.pdf');
-    
+    doc.save('certificate_' + item.id + '.pdf');
   }
 
   deleteRegistration(item: any) {
-    alert('We will delete the registration with ID: ' + item.id);
+    //alert('We will delete the registration with ID: ' + item.id);
+    this.authService.deleteRegistration(item.id).subscribe((response) => {
+      alert('Registration with ID: ' + item.id + ' has been deleted.');
+      // Optionally, you can refresh the list of registrations after deletion
+      this.getAllRegistrations(); // Refresh the list after deletion
+    });
+  }
+
+  editData(item: any) {
+    alert('We will edit the registration with ID: ' + item.id);
   }
 }

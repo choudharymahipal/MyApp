@@ -49,6 +49,7 @@
                     <td>{{item.created_by}}</td>
                     <td>
                       <button (click)="openModal(item)" class="btn btn-primary" title="विवरण"><i class="bi bi-eye"></i></button>
+                      <button (click)="editData(item)" class="btn btn-warning ml-2" title="संपादित करें"><i class="bi bi-pencil"></i></button>
                       <button (click)="generatePDF(item)" class="btn btn-success ml-2" title="प्रमाणपत्र डाउनलोड करें"><i class="bi bi-download"></i> </button>
                       <button (click)="deleteRegistration(item)" class="btn btn-danger ml-2" title="हटाएं?"><i class="bi bi-trash"></i></button>
                     </td>

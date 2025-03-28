@@ -88,4 +88,16 @@ export class AuthService {
       },
     });
   }
+
+  //delete registration
+  deleteRegistration(id: number): Observable<any> {
+    let token = localStorage.getItem('authToken');
+    return this.http.delete(this.apiUrl + '/auth/death-records/' + id, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 }
