@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: "settings/profile", component: ProfileComponent },
   { path: "view/registration", component: ViewRegistrationComponent },
   { path: "death/registration", component: RegistrationComponent },
+  { path: "death/registration/:id", component: RegistrationComponent },
   { path: "dashboard", component: DashboardComponent },
   { path: "", redirectTo: "", pathMatch: "full" },
   { path: "**", redirectTo: "error", pathMatch: "full" }

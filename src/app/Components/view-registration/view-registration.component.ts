@@ -47,53 +47,82 @@ export class ViewRegistrationComponent {
   bindDataTable() {}
 
   generatePDF(item: any) {
-    const doc = new jsPDF();
+    const doc = new jsPDF('p', 'mm', 'a4');
 
-    doc.text('Certificate', 20, 20);
+    doc.addFileToVFS(
+      'TiroDevanagariHindi-Regular.ttf',
+      './assets/font/TiroDevanagariHindi-Regular.ttf'
+    );
+    doc.addFont(
+      './assets/font/TiroDevanagariHindi-Regular.ttf',
+      'Tiro Devanagari Hindi',
+      'normal'
+    );
+    doc.setFont('Tiro Devanagari Hindi', 'normal');
 
-    // Colorful Table
-    autoTable(doc, {
-      head: [['Questions', 'Answers']],
-      body: [
-        ['मृत्यु की दिनांक', item.date_of_death],
-        ['मृतक का नाम', item.deceased_name],
-        ['मृतक के पिता या पति का नाम', item.father_or_spouse_name],
-        ['मृतक का लिंग', item.gender],
-        ['मृतक की आयु', item.age],
-        ['मृत्यु का स्थान', item.place_of_death],
-        ['मृत्यु का कारण', item.cause_of_death],
-        [
-          'क्या मृत्यु के पूर्व कोई चिकित्सकीय सुविधा प्राप्त हुई थी?',
-          item.medical_facility_received,
-        ],
-        ['क्या चिकित्सा के दौरान मृत्यु हुई थी?', item.death_during_treatment],
-        [
-          'यदि हाँ तो क्या चिकित्सकीय द्वारा लिखित मृत्यु प्रमाणित किया गया था?',
-          item.death_certified,
-        ],
-        ['बीमारी का नाम', item.disease_name],
-        ['मृतक का वर्तमान निवास', item.current_residence],
-        ['मृतक का पैतृक निवास', item.permanent_residence],
-        ['जाति / उपजाति', item.caste],
-        ['राष्ट्रीयता / धर्म', item.nationality],
-        ['मृतक का व्यवसाय', item.occupation],
-        [
-          'महिला मृत्यु की स्थिति में (क्या मृत्यु गर्भ के दौरान / प्रसूति के दौरान / गर्भावस्था की समाप्ति के 6 सप्ताह के भीतर हुई थीं)',
-          item.female_death_condition,
-        ],
-        [
-          'क्या मृतक किसी प्रकार के नशीले पदार्थ का सेवन करता था यदि हाँ तो कौन सा?',
-          item.substance_type,
-        ],
-        ['कब से नशीले पदार्थ का सेवन करता था ?', item.substance_usage_duration],
-        ['शवदाह की तिथि व समय', item.cremation_date_time],
-        ['शवदाह करने वाले का नाम', item.cremator_name],
-        ['शवदाह करने वाले का मृतक से सम्बंध?', item.cremator_relation],
-        ['सूचना देने वाले का नाम', item.informant_name],
-        ['सूचना देने वाले का मृतक से सम्बंध ?', item.informant_relation],
-      ].slice(1),
-      startY: 50,
+    // Add an image (e.g., logo)
+    const imgData = './assets/img/logo.png'; // Path to your logo image
+    doc.addImage(imgData, 'PNG', 10, 10, 30, 30); // (image, format, x, y, width, height)
+
+    // Add title
+    doc.setFontSize(20);
+    doc.text('नगर पंचायत बडहलगंज (गोरखपुर) उत्तर प्रदेश', 105, 20, {
+      align: 'center',
     });
+    doc.setFontSize(16);
+    doc.text('द्वारा संचालित मुक्तिपथ अंत्येष्टि स्थल', 105, 30, {
+      align: 'center',
+    });
+    doc.setFontSize(16);
+    doc.text('दाह संस्कार प्रमाण पत्र', 105, 40, { align: 'center' });
+
+    // Add date and certificate number
+    doc.setFontSize(12);
+    doc.setTextColor('red');
+    doc.text(`क्रमांक: ${item.id}`, 10, 50);
+    doc.text(`दिनांक: ${new Date().toLocaleDateString('hi-IN')}`, 150, 50);
+
+    // draw a line (Yellow)
+    doc.setDrawColor(255, 165, 0);
+    doc.setLineWidth(1);
+    doc.line(10, 55, 200, 55);
+
+    // Add main content
+    doc.setTextColor('black');
+    doc.setFontSize(15);
+    doc.text(
+      `प्रमाणित किया जाता है कि, श्री / श्रीमती / कुमारी: ${item.deceased_name}`,
+      10,
+      75
+    );
+    doc.text(`पति / पत्नी: ${item.father_or_spouse_name}`, 10, 85);
+    doc.text(`उम्र: ${item.age}`, 120, 85);
+    doc.text(`पता: ${item.current_residence}`, 10, 95);
+    doc.text(`मृत्यु की तिथि: ${this.formateDate(item.death_date)}`, 120, 95);
+    doc.text(`का शवदाह दिनांक: ${this.formateDate(item.cremation_date_time)}`, 10, 105);
+    doc.text('को मुक्तिपथ पर श्री ______________', 120, 105);
+    doc.text('के द्वारा किया गया ।', 10, 115);
+
+    // Add another image
+    const anotherImg = './assets/img/shiva.png'; // Path to your image
+    doc.addImage(anotherImg, 'PNG', 10, 130, 60, 60); // (image, format, x, y, width, height)
+
+    // Add footer
+    doc.setFontSize(14);
+    doc.text('हस्ताक्षर जारीकर्ता', 150, 160, {
+      align: 'center',
+    });
+    doc.text('नगर पंचायत', 150, 170, {
+      align: 'center',
+    });
+    doc.text('बड़हलगंज, गोरखपुर', 150, 180, {
+      align: 'center',
+    });
+
+    // draw a line (black)
+    doc.setDrawColor('black');
+    doc.setLineWidth(0.5);
+    doc.line(10, 200, 200, 200);
 
     // Save the PDF
     doc.save('certificate_' + item.id + '.pdf');
@@ -110,5 +139,17 @@ export class ViewRegistrationComponent {
 
   editData(item: any) {
     alert('We will edit the registration with ID: ' + item.id);
+  }
+
+  formateDate(newdate: string) {
+    // Format the death_date
+    const formattedDeathDate = new Intl.DateTimeFormat('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(new Date(newdate));
+    return formattedDeathDate;
   }
 }

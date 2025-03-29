@@ -1,6 +1,6 @@
 import { Component, effect } from '@angular/core';
 import { AuthService } from '../../Shared/Services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -12,10 +12,11 @@ export class RegistrationComponent {
   isLoggedIn = this.authService.isAuthenticated();
   formGroup!: FormGroup;
   currentUserEmail: string = '';
-
+  isEditMode: boolean = false;
   constructor(
     private authService: AuthService,
     private router: Router,
+    private activeRoute:ActivatedRoute,
     private fb: FormBuilder
   ) {
     effect(() => {
@@ -23,6 +24,11 @@ export class RegistrationComponent {
       if (!this.isLoggedIn()) {
         this.router.navigate(['/']);
       }
+    });
+
+    this.activeRoute.params.subscribe(params => {
+      console.log(params) //log the entire params object
+      console.log(params['id']) //log the value of id
     });
 
     this.formGroup = this.fb.group({
